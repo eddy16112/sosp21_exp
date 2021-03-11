@@ -18,6 +18,11 @@ tar -zxf RACE.tar.gz
 mkdir data
 mv RACE data
 ```
+## Get the vocabulary file
+```
+wget https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt
+```
+
 ## Run with the dataset
 ```
 bash bert_race_eval.sh
