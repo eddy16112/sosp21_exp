@@ -1,7 +1,7 @@
 TRAIN_DATA="data/RACE/train/middle"
 VALID_DATA="data/RACE/dev/middle \
             data/RACE/dev/high"
-VOCAB_FILE=bert-vocab.txt
+VOCAB_FILE=bert-large-uncased-vocab.txt
 PRETRAINED_CHECKPOINT=checkpoints/bert_345m
 CHECKPOINT_PATH=checkpoints/bert_345m_race
 COMMON_TASK_ARGS="--num-layers 24 \
