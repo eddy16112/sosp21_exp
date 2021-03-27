@@ -11,9 +11,9 @@ install apex: https://github.com/NVIDIA/apex
 ```
 
 # 2. pretrain BERT with wikipedia dataset
-## Get the dataset
+## Preprocess the dataset
 ```
-TODO
+bash megatron_bert_preprocess_data.sh
 ```
 ## Run with the dataset
 ```
