@@ -23,7 +23,7 @@ COMMON_TASK_ARGS_EXT="--train-data $TRAIN_DATA \
                       --eval-iters 10 \
                       --weight-decay 1.0e-1"
 
-python tasks/main.py \
+python megatron-lm/tasks/main.py \
        --task RACE \
        $COMMON_TASK_ARGS \
        $COMMON_TASK_ARGS_EXT \

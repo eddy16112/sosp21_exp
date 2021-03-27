@@ -10,23 +10,24 @@ install apex: https://github.com/NVIDIA/apex
 #python setup.py install
 ```
 
-# 2. BERT with RACE dataset
+# 2. pretrain BERT with wikipedia dataset
 ## Get the dataset
 ```
-cd megatron-lm
-wget http://www.cs.cmu.edu/~glai1/data/race/RACE.tar.gz
-tar -zxf RACE.tar.gz
-mkdir data
-mv RACE data
+TODO
 ```
-## Get the vocabulary file
-```
-cd megatron-lm
-wget https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt
-```
-
 ## Run with the dataset
 ```
-cp megatron_bert_race_eval.sh megatron-lm/
+bash megatron_pretrain_bert.sh
+```
+
+# 3. evaluate BERT with RACE dataset
+## Get the dataset
+```
+wget http://www.cs.cmu.edu/~glai1/data/race/RACE.tar.gz
+tar -zxf RACE.tar.gz
+mv RACE data
+```
+## Run with the dataset
+```
 bash megatron_bert_race_eval.sh
 ```
