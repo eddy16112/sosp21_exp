@@ -6,6 +6,7 @@ conda install six
 conda install regex
 conda install nltk
 conda install pyramid
+install pytorch gpu version https://pytorch.org
 install apex: https://github.com/NVIDIA/apex
 #python setup.py install
 ```
