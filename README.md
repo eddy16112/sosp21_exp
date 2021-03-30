@@ -6,7 +6,7 @@ conda install six
 conda install regex
 conda install nltk
 conda install pyramid
-install apex: https://github.com/NVIDIA/apex
+install apex: https://github.com/NVIDIA/apex (https://github.com/NVIDIA/apex#linux)
 #python setup.py install
 ```
 
