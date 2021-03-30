@@ -7,7 +7,10 @@ conda install nltk
 conda install pyramid
 install pytorch gpu version https://pytorch.org
 install apex: https://github.com/NVIDIA/apex (https://github.com/NVIDIA/apex#linux)
-#python setup.py install
+
+install megatron-lm
+cd megatrom-lm
+python setup.py install
 ```
 
 # 2. pretrain BERT with wikipedia dataset
