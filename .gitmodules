@@ -4,3 +4,6 @@
 [submodule "DeepSpeed"]
 	path = DeepSpeed
 	url = https://github.com/microsoft/DeepSpeed.git
+[submodule "distributed-deep-learning-examples"]
+	path = distributed-deep-learning-examples
+	url = https://code.ornl.gov/olcf-analytics/summit/distributed-deep-learning-examples.git
