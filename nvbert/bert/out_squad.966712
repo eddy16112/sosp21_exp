@@ -1,0 +1,144 @@
+
+Lmod is automatically replacing "xl/16.1.1-5" with "gcc/6.4.0".
+
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) spectrum-mpi/10.3.1.2-20200121
+
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+fp16 activated!
+fp16 activated!
+fp16 activated!
+fp16 activated!
+fp16 activated!
+fp16 activated!
+Setting env_var RANK=1
+Setting env_var LOCAL_RANK=1
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var RANK=5
+Setting env_var RANK=2
+Setting env_var LOCAL_RANK=2
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var LOCAL_RANK=5
+Setting env_var RANK=3
+Setting env_var LOCAL_RANK=3
+Setting env_var WORLD_SIZE=12
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+Setting env_var MASTER_PORT=29500
+Setting env_var RANK=4
+Setting env_var LOCAL_RANK=4
+Setting env_var RANK=0
+Setting env_var LOCAL_RANK=0
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var MASTER_PORT=29500
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+out dir is /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD
+fp16 activated!
+fp16 activated!
+fp16 activated!
+fp16 activated!
+fp16 activated!
+fp16 activated!
+Setting env_var RANK=11
+Setting env_var LOCAL_RANK=5
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var RANK=8
+Setting env_var LOCAL_RANK=2
+Setting env_var WORLD_SIZE=12
+Setting env_var RANK=7
+Setting env_var LOCAL_RANK=1
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+Setting env_var RANK=10
+Setting env_var RANK=6
+Setting env_var LOCAL_RANK=0
+Setting env_var LOCAL_RANK=4
+Setting env_var WORLD_SIZE=12
+Setting env_var RANK=9
+Setting env_var LOCAL_RANK=3
+Setting env_var WORLD_SIZE=12
+Setting env_var WORLD_SIZE=12
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+Setting env_var MASTER_ADDR=h22n02
+Setting env_var MASTER_PORT=29500
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+python   /gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py --init_checkpoint=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/checkpoints/DLE_BERT_FP16_PyT_LAMB_92_hard_scaling_node.pt  --do_train  --train_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/train-v1.1.json  --train_batch_size=4 --do_predict --predict_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/dev-v1.1.json --predict_batch_size=4 --eval_script=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/squad/v1.1/evaluate-v1.1.py --do_eval  --do_lower_case  --bert_model=bert-large-uncased  --learning_rate=3e-5  --seed=1  --num_train_epochs=2.0  --max_seq_length=384  --doc_stride=128  --output_dir=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD  --vocab_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/data/BERT/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt  --config_file=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/bert_config.json  --max_steps=-1   --fp16  --use_env --json-summary=/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/results/SQuAD/dllogger_squad.json 
+Traceback (most recent call last):
+  File "/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py", line 31, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py", line 31, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py", line 31, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py", line 31, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py", line 31, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+Traceback (most recent call last):
+  File "/gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT/run_squad.py", line 31, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@batch5>
+Subject: Job 966712: <test> in cluster <summit> Exited
+
+Job <test> was submitted from host <login5> by user <junqi> in cluster <summit> at Thu Mar 12 14:52:13 2020
+Job was executed on host(s) <1*batch5>, in queue <batch>, as user <junqi> in cluster <summit> at Thu Mar 12 14:52:48 2020
+                            <42*h22n02>
+                            <42*h22n03>
+</ccs/home/junqi> was used as the home directory.
+</gpfs/alpine/scratch/junqi/stf011/mlperf/DeepLearningExamples/PyTorch/LanguageModeling/BERT> was used as the working directory.
+Started at Thu Mar 12 14:52:48 2020
+Terminated at Thu Mar 12 14:53:05 2020
+Results reported at Thu Mar 12 14:53:05 2020
+
+The output (if any) is above this job summary.
+

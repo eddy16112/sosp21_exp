@@ -1,0 +1,22 @@
+#!/bin/bash
+#BSUB -nnodes 2
+#BSUB -W 30
+#BSUB -P mat020
+##BSUB -alloc_flags "smt4 nvme"
+#BSUB -J test
+#BSUB -o out_squad.%J
+#BSUB -q batch
+
+
+BERT_ROOT=$(pwd)
+# Load modules
+module load ibm-wml-ce/1.7.0-3
+pip install --user boto3 ipdb html2text nltk progressbar git+https://github.com/NVIDIA/dllogger
+
+# Determine number of nodes
+nprocspn=6
+nnodes=$(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch | wc -l)
+nprocs=$(( ${nnodes} * ${nprocspn} ))
+
+cd ${BERT_ROOT}
+jsrun --smpiargs="-disable_gpu_hooks" -n ${nnodes} -g 6 -c 42 -a ${nprocspn} -r 1 -E BERT_ROOT=$BERT_ROOT --bind=proportional-packed:7 --launch_distribution=packed ./scripts/run_squad_summit.sh

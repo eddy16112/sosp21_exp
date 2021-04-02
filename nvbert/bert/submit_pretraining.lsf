@@ -1,0 +1,29 @@
+#!/bin/bash
+#BSUB -nnodes 32
+#BSUB -W 1:50
+#BSUB -P stf011
+#BSUB -alloc_flags "smt4 nvme"
+#BSUB -J bert 
+#BSUB -o out_bert.%J
+#BSUB -q batch
+
+BERT_ROOT=$(pwd)
+# Load modules
+module load ibm-wml-ce/1.7.0-3
+pip install --user boto3 ipdb html2text nltk progressbar git+https://github.com/NVIDIA/dllogger
+# Determine number of nodes
+nprocspn=6
+nnodes=$(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch | wc -l)
+nprocs=$(( ${nnodes} * ${nprocspn} ))
+
+# Staging input data 
+INPUT_DATA=<path-to-input-data>
+jsrun -n ${nnodes} -a 1 -c 42 -r 1 cp -r ${INPUT_DATA} /mnt/bb/${USER}/
+
+cd ${BERT_ROOT}
+jsrun --smpiargs="-disable_gpu_hooks" -n ${nnodes} -g 6 -c 42 -a ${nprocspn} -r 1 -E BERT_ROOT=$BERT_ROOT  --bind=proportional-packed:7 --launch_distribution=packed ./utils/launch.sh ./scripts/run_pretraining_summit_32node_phase1.sh
+
+jswait 1
+
+jsrun --smpiargs="-disable_gpu_hooks" -n ${nnodes} -g 6 -c 42 -a ${nprocspn} -r 1 -E BERT_ROOT=$BERT_ROOT --bind=proportional-packed:7 --launch_distribution=packed ./utils/launch.sh ./scripts/run_pretraining_summit_32node_phase2.sh
+
