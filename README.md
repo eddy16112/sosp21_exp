@@ -34,3 +34,5 @@ mv RACE data
 ```
 bash megatron_bert_race_eval.sh
 ```
+
+https://github.com/google-research/bert
