@@ -7,6 +7,7 @@ conda install nltk
 conda install pyramid
 install pytorch gpu version https://pytorch.org
 install apex: https://github.com/NVIDIA/apex (https://github.com/NVIDIA/apex#linux)
+install wikiextractor: https://github.com/attardi/wikiextractor.git
 
 install megatron-lm
 cd megatrom-lm
