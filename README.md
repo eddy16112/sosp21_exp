@@ -5,9 +5,12 @@ conda install pybind11
 conda install six
 conda install nltk
 conda install pyramid
+pip install boto3
+pip install requests
 install pytorch gpu version https://pytorch.org
 install apex: https://github.com/NVIDIA/apex (https://github.com/NVIDIA/apex#linux)
 install wikiextractor: https://github.com/attardi/wikiextractor.git
+install dllogger https://github.com/NVIDIA/dllogger.git
 
 install megatron-lm
 cd megatrom-lm

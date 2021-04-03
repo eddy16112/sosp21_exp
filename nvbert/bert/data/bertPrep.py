@@ -78,13 +78,13 @@ def main(args):
         elif args.dataset == 'wikicorpus_en':
             if args.skip_wikiextractor == 0:
                 path_to_wikiextractor_in_container = 'nvbert/wikiextractor/WikiExtractor.py'
-                wikiextractor_command = path_to_wikiextractor_in_container + ' ' + directory_structure['download'] + '/' + args.dataset + '/wikicorpus_en.xml ' + '-b 100M --processes ' + str(args.n_processes) + ' -o ' + directory_structure['extracted'] + '/' + args.dataset
+                wikiextractor_command = path_to_wikiextractor_in_container + ' ' + directory_structure['download'] + '/' + args.dataset + '/wikicorpus_en.xml ' + '-b ' + args.byte_size + ' --processes ' + str(args.n_processes) + ' -o ' + directory_structure['extracted'] + '/' + args.dataset + '_' + args.byte_size
                 print('WikiExtractor Command:', wikiextractor_command)
                 wikiextractor_process = subprocess.run(wikiextractor_command, shell=True, check=True)
                 #wikiextractor_process.communicate()
 
-            wiki_path = directory_structure['extracted'] + '/wikicorpus_en'
-            output_filename = directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line.txt'
+            wiki_path = directory_structure['extracted'] + '/wikicorpus_en' + '_' + args.byte_size
+            output_filename = directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line' + '_' + args.byte_size + '.txt'
             wiki_formatter = WikicorpusTextFormatting.WikicorpusTextFormatting(wiki_path, output_filename, recursive=True)
             wiki_formatter.merge()
 
@@ -92,13 +92,13 @@ def main(args):
             assert False, 'wikicorpus_zh not fully supported at this time. The simplified/tradition Chinese data needs to be translated and properly segmented still, and should work once this step is added.'
             if args.skip_wikiextractor == 0:
                 path_to_wikiextractor_in_container = 'nvbert/wikiextractor/WikiExtractor.py'
-                wikiextractor_command = path_to_wikiextractor_in_container + ' ' + directory_structure['download'] + '/' + args.dataset + '/wikicorpus_zh.xml ' + '-b 100M --processes ' + str(args.n_processes) + ' -o ' + directory_structure['extracted'] + '/' + args.dataset
+                wikiextractor_command = path_to_wikiextractor_in_container + ' ' + directory_structure['download'] + '/' + args.dataset + '/wikicorpus_zh.xml ' + '-b ' + args.byte_size + ' --processes ' + str(args.n_processes) + ' -o ' + directory_structure['extracted'] + '/' + args.dataset + '_' + args.byte_size
                 print('WikiExtractor Command:', wikiextractor_command)
                 wikiextractor_process = subprocess.run(wikiextractor_command, shell=True, check=True)
                 #wikiextractor_process.communicate()
 
-            wiki_path = directory_structure['extracted'] + '/wikicorpus_zh'
-            output_filename = directory_structure['formatted'] + '/wikicorpus_zh_one_article_per_line.txt'
+            wiki_path = directory_structure['extracted'] + '/wikicorpus_zh' + '_' + args.byte_size
+            output_filename = directory_structure['formatted'] + '/wikicorpus_zh_one_article_per_line' + '_' + args.byte_size + '.txt'
             wiki_formatter = WikicorpusTextFormatting.WikicorpusTextFormatting(wiki_path, output_filename, recursive=True)
             wiki_formatter.merge()
             
@@ -111,9 +111,9 @@ def main(args):
                 if args.dataset == 'bookscorpus':
                     args.input_files = [directory_structure['formatted'] + '/bookscorpus_one_book_per_line.txt']
                 elif args.dataset == 'wikicorpus_en':
-                    args.input_files = [directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line.txt']
+                    args.input_files = [directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line' + '_' + args.byte_size + '.txt']
                 elif args.dataset == 'wikicorpus_zh':
-                    args.input_files = [directory_structure['formatted'] + '/wikicorpus_zh_one_article_per_line.txt']
+                    args.input_files = [directory_structure['formatted'] + '/wikicorpus_zh_one_article_per_line' + '_' + args.byte_size + '.txt']
                 elif args.dataset == 'books_wiki_en_corpus':
                     args.input_files = [directory_structure['formatted'] + '/bookscorpus_one_book_per_line.txt', directory_structure['formatted'] + '/wikicorpus_en_one_article_per_line.txt']
 
@@ -356,6 +356,13 @@ if __name__ == "__main__":
         '--interactive_json_config_generator',
         type=str,
         help='Specify the action you want the app to take. e.g., generate vocab, segment, create tfrecords'
+    )
+
+    parser.add_argument(
+        '--byte_size',
+        type=str,
+        help='Specify whether it is cased (0) or uncased (1) (any number greater than 0 will be treated as uncased)',
+        default="100M"
     )
 
     args = parser.parse_args()

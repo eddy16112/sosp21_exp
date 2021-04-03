@@ -1,7 +1,8 @@
 #!/bin/bash
 # Set env vars for PyTorch
-nodes=($(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch))
-head=${nodes[0]}
+#nodes=($(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch))
+#head=${nodes[0]}
+head=cn4030
 
 export RANK=$OMPI_COMM_WORLD_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK

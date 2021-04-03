@@ -33,10 +33,16 @@ python3 nvbert/bert/data/bertPrep.py --action sharding --dataset wikicorpus_en
 
 
 # Create HDF5 files Phase 1
-python3 nvbert/bert/data/bertPrep.py --action create_hdf5_files --dataset wikicorpus_en --max_seq_length 128 \
- --max_predictions_per_seq 20 --vocab_file $BERT_PREP_WORKING_DIR/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt --do_lower_case 1
+# python3 nvbert/bert/data/bertPrep.py --action create_hdf5_files --dataset wikicorpus_en --max_seq_length 128 \
+#  --max_predictions_per_seq 20 --vocab_file $BERT_PREP_WORKING_DIR/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt --do_lower_case 1
+#
+#
+# # Create HDF5 files Phase 2
+# python3 nvbert/bert/data/bertPrep.py --action create_hdf5_files --dataset wikicorpus_en --max_seq_length 512 \
+#  --max_predictions_per_seq 80 --vocab_file $BERT_PREP_WORKING_DIR/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt --do_lower_case 1
+
+python3 nvbert/bert/data/bertPrep.py --action create_hdf5_files --dataset wikicorpus_en --max_seq_length 128 --max_predictions_per_seq 20 --vocab_file bert-large-uncased-vocab.txt --do_lower_case 1
 
 
 # Create HDF5 files Phase 2
-python3 nvbert/bert/data/bertPrep.py --action create_hdf5_files --dataset wikicorpus_en --max_seq_length 512 \
- --max_predictions_per_seq 80 --vocab_file $BERT_PREP_WORKING_DIR/download/google_pretrained_weights/uncased_L-24_H-1024_A-16/vocab.txt --do_lower_case 1
+python3 nvbert/bert/data/bertPrep.py --action create_hdf5_files --dataset wikicorpus_en --max_seq_length 512 --max_predictions_per_seq 80 --vocab_file bert-large-uncased-vocab.txt --do_lower_case 1

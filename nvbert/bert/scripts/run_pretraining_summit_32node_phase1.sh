@@ -13,14 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BERT_DATA_DIR="/mnt/bb/${USER}/BERT"
-BERT_OUT_DIR="${BERT_ROOT}/results"
-LOG="/mnt/bb/${USER}/log.phase1"
+BERT_DATA_DIR="/projects/legion/sosp21_exp/workspace"
+BERT_OUT_DIR="/projects/legion/sosp21_exp/workspace/results"
+LOG="/projects/legion/sosp21_exp/workspace/log.phase1"
+BERT_ROOT="/projects/legion/sosp21_exp/nvbert/bert"
 
 train_batch_size=${1:-336} 
 learning_rate=${2:-"6e-3"}
 precision=${3:-"fp16"}
-num_gpus=${4:-6}
+num_gpus=${4:-1}
 warmup_proportion=${5:-"0.2843"}
 train_steps=${6:-7038}
 save_checkpoint_steps=${7:-200}
@@ -127,6 +128,7 @@ CMD+=" --json-summary=${RESULTS_DIR}/dllogger_pretrain_phase1.json "
 
 unset CUDA_VISIBLE_DEVICES
 source ${BERT_ROOT}/bootstrap_pytorch_dist_env.sh
+echo $CMD
 CMD="python3 $CMD"
 
 
