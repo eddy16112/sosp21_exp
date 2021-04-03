@@ -13,14 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BERT_DATA_DIR="/mnt/bb/${USER}/BERT"
-BERT_OUT_DIR="${BERT_ROOT}/results"
-LOG="/mnt/bb/${USER}/log.phase2"
+BERT_DATA_DIR="/projects/legion/sosp21_exp/workspace"
+BERT_OUT_DIR="/projects/legion/sosp21_exp/workspace/results"
+LOG="/projects/legion/sosp21_exp/workspace/log.phase1"
+BERT_ROOT="/projects/legion/sosp21_exp/nvbert/bert"
 
 train_batch_size=${1:-336} # train_batch_size * NGPUS ~= 65536
 learning_rate=${2:-"6e-3"}
 precision=${3:-"fp16"}
-num_gpus=${4:-6} # unused in this script
+num_gpus=${4:-1} # unused in this script
 warmup_proportion=${5:-"0.2843"}
 train_steps=${6:-7038}
 save_checkpoint_steps=${7:-200}

@@ -124,7 +124,7 @@ CMD+=" $ALL_REDUCE_POST_ACCUMULATION_FP16"
 CMD+=" $INIT_CHECKPOINT"
 CMD+=" --do_train"
 CMD+=" --use_env"
-CMD+=" --json-summary=${RESULTS_DIR}/dllogger_pretrain_phase1.json "
+# CMD+=" --json-summary=${RESULTS_DIR}/dllogger_pretrain_phase1.json "
 
 unset CUDA_VISIBLE_DEVICES
 source ${BERT_ROOT}/bootstrap_pytorch_dist_env.sh
@@ -142,6 +142,13 @@ fi
 
 set -x
 $CMD 2>&1 > $LOG
+# if [ -z "$LOGFILE" ] ; then
+#    $CMD
+# else
+#    (
+#      $CMD
+#    ) |& tee $LOGFILE
+# fi
 
 set +x
 cp $LOG $BERT_OUT_DIR
