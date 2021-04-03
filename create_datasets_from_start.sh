@@ -25,11 +25,11 @@ python3 nvbert/bert/data//bertPrep.py --action download --dataset google_pretrai
 
 # Properly format the text files
 #python3 /workspace/bert/data/bertPrep.py --action text_formatting --dataset bookscorpus
-python3 nvbert/bert/data/bertPrep.py --action text_formatting --dataset wikicorpus_en
+python3 nvbert/bert/data/bertPrep.py --action text_formatting --dataset wikicorpus_en --byte_size 1M
 
 
 # Shard the text files (group wiki+books then shard)
-python3 nvbert/bert/data/bertPrep.py --action sharding --dataset wikicorpus_en
+python3 nvbert/bert/data/bertPrep.py --action sharding --dataset wikicorpus_en --byte_size 1M
 
 
 # Create HDF5 files Phase 1
