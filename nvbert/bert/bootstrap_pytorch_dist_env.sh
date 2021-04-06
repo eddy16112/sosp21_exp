@@ -2,13 +2,13 @@
 # Set env vars for PyTorch
 #nodes=($(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch))
 #head=${nodes[0]}
-head=cn4030
+head=cn4041
 
 export RANK=$OMPI_COMM_WORLD_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
 export WORLD_SIZE=$OMPI_COMM_WORLD_SIZE
 export MASTER_ADDR=$head
-export MASTER_PORT=29500 # default from torch launcher
+export MASTER_PORT=29501 # default from torch launcher
 
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
