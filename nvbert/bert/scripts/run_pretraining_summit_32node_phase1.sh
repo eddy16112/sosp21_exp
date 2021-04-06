@@ -13,9 +13,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BERT_DATA_DIR="/projects/legion/sosp21_exp/workspace"
-BERT_OUT_DIR="/projects/legion/sosp21_exp/workspace/results"
-LOG="/projects/legion/sosp21_exp/workspace/log.phase1"
+BERT_DATA_DIR="/projects/legion/sosp21_exp/bert_data"
+BERT_OUT_DIR="/projects/legion/sosp21_exp/bert_data/results"
+LOG="/projects/legion/sosp21_exp/bert_data/log.phase1"
 BERT_ROOT="/projects/legion/sosp21_exp/nvbert/bert"
 
 train_batch_size=${1:-336} 
