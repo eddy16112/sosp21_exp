@@ -17,6 +17,9 @@ cd megatrom-lm
 python setup.py install
 ```
 
+issue with pytorch 1.7
+https://github.com/pytorch/pytorch/issues/47138
+
 # 2. pretrain BERT with wikipedia dataset
 ## Preprocess the dataset
 ```
