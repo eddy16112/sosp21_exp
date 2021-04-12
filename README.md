@@ -43,3 +43,6 @@ bash megatron_bert_race_eval.sh
 ```
 
 https://github.com/google-research/bert
+
+# Current issue on Summit
+RuntimeError: default_program(57): error: identifier "aten_mul_flat__1" is undefined
