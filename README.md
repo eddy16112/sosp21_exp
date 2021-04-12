@@ -17,9 +17,6 @@ cd megatrom-lm
 python setup.py install
 ```
 
-issue with pytorch 1.7
-https://github.com/pytorch/pytorch/issues/47138
-
 # 2. pretrain BERT with wikipedia dataset
 ## Preprocess the dataset
 ```
@@ -45,4 +42,13 @@ bash megatron_bert_race_eval.sh
 https://github.com/google-research/bert
 
 # Current issue on Summit
+## pytorch 1.7, python 3.6,3.7
+issue with pytorch 1.7
+https://github.com/pytorch/pytorch/issues/47138
+nvbert:
 RuntimeError: default_program(57): error: identifier "aten_mul_flat__1" is undefined
+megatron-lm:
+AttributeError: module ‘torch’ has no attribute ‘_amp_foreach_non_finite_check_and_unscale_’
+
+## pytorch 1.7 python 3.8
+apex does not find c++ compiler
