@@ -13,15 +13,20 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-BERT_DATA_DIR="/projects/legion/sosp21_exp/bert_data"
-BERT_OUT_DIR="/projects/legion/sosp21_exp/bert_data/results"
-LOG="/projects/legion/sosp21_exp/bert_data/log.phase1"
-BERT_ROOT="/projects/legion/sosp21_exp/nvbert/bert"
+#BERT_DATA_DIR="/projects/legion/sosp21_exp/bert_data"
+#BERT_OUT_DIR="/projects/legion/sosp21_exp/bert_data/results"
+#LOG="/projects/legion/sosp21_exp/bert_data/log.phase1"
+#BERT_ROOT="/projects/legion/sosp21_exp/nvbert/bert"
+
+BERT_DATA_DIR="/ccs/home/wwu12/sosp21_xl/bert_data"
+BERT_OUT_DIR="/gpfs/alpine/scratch/wwu12/csc335/sosp21_xl/bert_data/results"
+LOG="/gpfs/alpine/scratch/wwu12/csc335/sosp21_xl/bert_data/log.phase1"
+BERT_ROOT="/ccs/home/wwu12/sosp21_xl/nvbert/bert"
 
 train_batch_size=${1:-336} 
 learning_rate=${2:-"6e-3"}
 precision=${3:-"fp16"}
-num_gpus=${4:-1}
+num_gpus=${4:-6}
 warmup_proportion=${5:-"0.2843"}
 train_steps=${6:-7038}
 save_checkpoint_steps=${7:-200}
@@ -124,7 +129,7 @@ CMD+=" $ALL_REDUCE_POST_ACCUMULATION_FP16"
 CMD+=" $INIT_CHECKPOINT"
 CMD+=" --do_train"
 CMD+=" --use_env"
-# CMD+=" --json-summary=${RESULTS_DIR}/dllogger_pretrain_phase1.json "
+CMD+=" --json-summary=${RESULTS_DIR}/dllogger_pretrain_phase1.json "
 
 unset CUDA_VISIBLE_DEVICES
 source ${BERT_ROOT}/bootstrap_pytorch_dist_env.sh
@@ -142,13 +147,13 @@ fi
 
 set -x
 $CMD 2>&1 > $LOG
-# if [ -z "$LOGFILE" ] ; then
-#    $CMD
-# else
-#    (
-#      $CMD
-#    ) |& tee $LOGFILE
-# fi
+#if [ -z "$LOGFILE" ] ; then
+#   $CMD
+#else
+#   (
+#     $CMD
+#   ) |& tee $LOGFILE
+#fi
 
 set +x
 cp $LOG $BERT_OUT_DIR

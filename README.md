@@ -20,11 +20,11 @@ python setup.py install
 # 2. pretrain BERT with wikipedia dataset
 ## Preprocess the dataset
 ```
-bash megatron_bert_preprocess_data.sh
+bash megatron18_bert_preprocess_data.sh
 ```
 ## Run with the dataset
 ```
-bash megatron_pretrain_bert.sh
+bash megatron18_bert_pretrain.sh
 ```
 
 # 3. evaluate BERT with RACE dataset

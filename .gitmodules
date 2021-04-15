@@ -7,3 +7,6 @@
 [submodule "distributed-deep-learning-examples"]
 	path = distributed-deep-learning-examples
 	url = https://code.ornl.gov/olcf-analytics/summit/distributed-deep-learning-examples.git
+[submodule "megatron-lm-1.7"]
+	path = megatron-lm-1.7
+	url = https://github.com/NVIDIA/Megatron-LM.git
