@@ -3,7 +3,7 @@
 RANK=0
 WORLD_SIZE=1
 DATA_PATH=my-bert_text_sentence
-CHECKPOINT_PATH=$MEMBERWORK/csc335/sosp21_xl/checkpoints/bert_345m
+CHECKPOINT_PATH=checkpoints/bert_345m
 
 python megatron-lm/pretrain_bert.py \
        --num-layers 24 \
@@ -30,5 +30,4 @@ python megatron-lm/pretrain_bert.py \
        --log-interval 100 \
        --save-interval 10000 \
        --eval-interval 1000 \
-       --eval-iters 10 \
-       --fp16
+       --eval-iters 10
