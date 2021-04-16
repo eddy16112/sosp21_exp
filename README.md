@@ -41,6 +41,13 @@ bash megatron_bert_race_eval.sh
 
 https://github.com/google-research/bert
 
+## Summit module
+```
+module load open-ce/1.1.3-py37-0
+module load gcc/6.4.0 
+module load cuda/10.2
+```
+
 # Current issue on Summit
 ## pytorch 1.7, python 3.6,3.7
 issue with pytorch 1.7
