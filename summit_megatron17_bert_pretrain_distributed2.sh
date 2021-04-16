@@ -8,21 +8,21 @@ GPUS_PER_NODE=6
 # Change for multinode config
 MASTER_ADDR=$head
 MASTER_PORT=29501
-#NNODES=$summit_nnodes
-NNODES=4
+NNODES=$summit_nnodes
+#NNODES=2
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
 DATA_PATH=my-bert_text_sentence
 CHECKPOINT_PATH=checkpoints/bert_345m
 
-export RANK=$NODE_RANK
+#export RANK=$NODE_RANK
 #export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
-export WORLD_SIZE=$OMPI_COMM_WORLD_SIZE
+#export WORLD_SIZE=$OMPI_COMM_WORLD_SIZE
 #export MASTER_ADDR=$head
 #export MASTER_PORT=29501
 echo "nnodes=${NNODES}"
-echo "Setting env_var RANK=${RANK}"
+echo "Setting env_var RANK=${NODE_RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
 echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 
