@@ -1,8 +1,8 @@
 #!/bin/bash
 
-GPUS_PER_NODE=2
+GPUS_PER_NODE=1
 # Change for multinode config
-MASTER_ADDR=cn655
+MASTER_ADDR=cn141
 MASTER_PORT=6003
 NNODES=$OMPI_COMM_WORLD_SIZE
 NODE_RANK=$OMPI_COMM_WORLD_RANK
@@ -22,7 +22,7 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        --hidden-size 1024 \
        --num-attention-heads 16 \
        --micro-batch-size 4 \
-       --global-batch-size 16 \
+       --global-batch-size 8 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 1000000 \

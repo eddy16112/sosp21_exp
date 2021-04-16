@@ -24,10 +24,20 @@ bash megatron18_bert_preprocess_data.sh
 ```
 ## Run with the dataset
 ```
-bash megatron18_bert_pretrain.sh
+mpirun -np 1 megatron18_bert_pretrain_distributed.sh
 ```
 
-# 3. evaluate BERT with RACE dataset
+# 3. pretrain GPT2 with wikipedia dataset
+## Preprocess the dataset
+```
+bash megatron18_bert_preprocess_data.sh
+```
+## Run with the dataset
+```
+mpirun -np 1 megatron17_gpt2_pretrain_distributed.sh
+```
+
+# 4. evaluate BERT with RACE dataset
 ## Get the dataset
 ```
 wget http://www.cs.cmu.edu/~glai1/data/race/RACE.tar.gz

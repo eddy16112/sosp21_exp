@@ -1,10 +1,10 @@
 #!/bin/bash
 
-GPUS_PER_NODE=2
+GPUS_PER_NODE=1
 # Change for multinode config
-MASTER_ADDR=cn650
-MASTER_PORT=29510
-NNODES=1
+MASTER_ADDR=cn141
+MASTER_PORT=29514
+NNODES=2
 #NNODES=$summit_nnodes
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
@@ -15,8 +15,8 @@ CHECKPOINT_PATH=checkpoints/bert_345m
 export RANK=$NODE_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
 export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
-export MASTER_ADDR=cn650
-export MASTER_PORT=29510
+export MASTER_ADDR=cn141
+export MASTER_PORT=29514
 echo "nnodes=${NNODES}"
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
