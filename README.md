@@ -52,3 +52,7 @@ AttributeError: module ‘torch’ has no attribute ‘_amp_foreach_non_finite_c
 
 ## pytorch 1.7 python 3.8
 apex does not find c++ compiler
+
+## megatron-lm v1.1
+apply this patch for fp32
+https://github.com/NVIDIA/Megatron-LM/issues/36
