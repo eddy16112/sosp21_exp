@@ -2,27 +2,36 @@
 
 GPUS_PER_NODE=2
 # Change for multinode config
-MASTER_ADDR=cn655
-MASTER_PORT=6003
-NNODES=$OMPI_COMM_WORLD_SIZE
+MASTER_ADDR=cn650
+MASTER_PORT=29510
+NNODES=1
+#NNODES=$summit_nnodes
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
-
-echo "Setting env_var RANK=${NODE_RANK}"
-echo "Setting env_var NNODES=${NNODES}"
 
 DATA_PATH=my-bert_text_sentence
 CHECKPOINT_PATH=checkpoints/bert_345m
 
-DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
+export RANK=$NODE_RANK
+export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
+export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+export MASTER_ADDR=cn650
+export MASTER_PORT=29510
+echo "nnodes=${NNODES}"
+echo "Setting env_var RANK=${RANK}"
+echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
+echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 
-python -m torch.distributed.launch $DISTRIBUTED_ARGS \
-       megatron-lm/pretrain_bert.py \
+#DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
+
+#python -m torch.distributed.launch $DISTRIBUTED_ARGS \
+python  megatron-lm-1.7/pretrain_bert.py \
+       --local_rank ${LOCAL_RANK} \
+       --tensor-model-parallel-size 1 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --micro-batch-size 4 \
-       --global-batch-size 16 \
+       --batch-size 4 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 1000000 \
@@ -39,7 +48,7 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        --lr-decay-iters 990000 \
        --weight-decay 1e-2 \
        --clip-grad 1.0 \
-       --lr-warmup-fraction .01 \
+       --warmup .01 \
        --log-interval 100 \
        --save-interval 10000 \
        --eval-interval 1000 \

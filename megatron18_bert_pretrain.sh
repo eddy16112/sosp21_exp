@@ -9,8 +9,8 @@ python megatron-lm/pretrain_bert.py \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --micro-batch-size 4 \
-       --global-batch-size 8 \
+       --micro-batch-size 24 \
+       --global-batch-size 24 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 2000000 \
