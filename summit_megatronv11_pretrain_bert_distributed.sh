@@ -6,6 +6,9 @@ summit_nnodes=$(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v
 
 export RANK=$OMPI_COMM_WORLD_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
+export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+export MASTER_ADDR=$head
+export MASTER_PORT=29501
 echo "nnodes=${summit_nnodes}"
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
@@ -26,11 +29,11 @@ DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $
 
 python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        megatron-lm-1.7/pretrain_bert.py \
-       --tensor-model-parallel-size 1 \
+       --model-parallel-size 1 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 12 \
+       --batch-size 4 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 1000000 \
@@ -51,5 +54,4 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        --log-interval 100 \
        --save-interval 10000 \
        --eval-interval 1000 \
-       --eval-iters 10 \
-       --fp16
+       --eval-iters 10
