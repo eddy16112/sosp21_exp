@@ -19,6 +19,7 @@ export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 export MASTER_ADDR=$head
 export MASTER_PORT=29501
 echo "nnodes=${NNODES}"
+echo "master=${MASTER_ADDR}"
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
 echo "Setting env_var WORLD_SIZE=${WORLD_SIZE}"
@@ -27,18 +28,16 @@ DATA_PATH=my-gpt2_text_document
 CHECKPOINT_PATH=checkpoints/gpt2_345m
 
 python megatron-lm-1.7/pretrain_gpt2.py \
-	     --local_rank ${LOCAL_RANK} \
-       --tensor-model-parallel-size 1 \
+       --local_rank ${LOCAL_RANK} \
+       --tensor-model-parallel-size 2 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 8 \
-       --seq-length 1024 \
-       --max-position-embeddings 1024 \
-       --train-iters 500000 \
+       --batch-size 64 \
+       --seq-length 512 \
+       --max-position-embeddings 512 \
+       --train-iters 30 \
        --lr-decay-iters 320000 \
-       --save $CHECKPOINT_PATH \
-       --load $CHECKPOINT_PATH \
        --data-path $DATA_PATH \
        --vocab-file gpt2-vocab.json \
        --merge-file gpt2-merges.txt \
@@ -52,7 +51,7 @@ python megatron-lm-1.7/pretrain_gpt2.py \
        --clip-grad 1.0 \
        --warmup .01 \
        --checkpoint-activations \
-       --log-interval 100 \
+       --log-interval 10 \
        --save-interval 10000 \
        --eval-interval 1000 \
        --eval-iters 10

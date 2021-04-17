@@ -22,6 +22,7 @@ export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 export MASTER_ADDR=$head
 export MASTER_PORT=29501
 echo "nnodes=${NNODES}"
+echo "master=${MASTER_ADDR}"
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
 echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
@@ -31,16 +32,14 @@ echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 #python -m torch.distributed.launch $DISTRIBUTED_ARGS \
 python  megatron-lm-1.7/pretrain_bert.py \
        --local_rank ${LOCAL_RANK} \
-       --tensor-model-parallel-size 1 \
+       --tensor-model-parallel-size 4 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 4 \
+       --batch-size 16 \
        --seq-length 512 \
        --max-position-embeddings 512 \
-       --train-iters 1000000 \
-       --save $CHECKPOINT_PATH \
-       --load $CHECKPOINT_PATH \
+       --train-iters 30 \
        --data-path $DATA_PATH \
        --vocab-file bert-large-uncased-vocab.txt \
        --data-impl mmap \
@@ -53,7 +52,7 @@ python  megatron-lm-1.7/pretrain_bert.py \
        --weight-decay 1e-2 \
        --clip-grad 1.0 \
        --warmup .01 \
-       --log-interval 100 \
+       --log-interval 10 \
        --save-interval 10000 \
        --eval-interval 1000 \
        --eval-iters 10
