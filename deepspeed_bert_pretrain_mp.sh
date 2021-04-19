@@ -10,6 +10,7 @@ WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
 export RANK=$NODE_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
+export LOCAL_SIZE=$OMPI_COMM_WORLD_LOCAL_SIZE
 export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 export MASTER_ADDR=$MASTER_ADDR
 export MASTER_PORT=$MASTER_PORT
@@ -22,6 +23,7 @@ echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 #DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 
 python DeepSpeed/DeepSpeedExamples/Megatron-LM/pretrain_bert.py \
+       --local_rank ${LOCAL_RANK} \
        --model-parallel-size 1 \
        --num-layers 24 \
        --hidden-size 1024 \
@@ -34,7 +36,6 @@ python DeepSpeed/DeepSpeedExamples/Megatron-LM/pretrain_bert.py \
 			 --log-interval 10 \
        --resume-dataloader \
        --train-data wikipedia \
-       --lazy-loader \
        --tokenizer-type BertWordPieceTokenizer \
        --tokenizer-model-type bert-large-uncased \
        --presplit-sentences \
