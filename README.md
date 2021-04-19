@@ -1,4 +1,4 @@
-# 1. Requirement
+# Requirement
 ```
 conda install pybind11
 conda install six
@@ -15,7 +15,7 @@ install dllogger https://github.com/NVIDIA/dllogger.git
 ```
 
 # Megatron-LM
-# Install (optional)
+# 1. Install (optional)
 ```
 install megatron-lm
 cd megatrom-lm
