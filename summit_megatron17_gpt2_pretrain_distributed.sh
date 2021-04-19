@@ -13,6 +13,9 @@ NNODES=$summit_nnodes
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
+MP=$1
+BATCH_SIZE=$2
+
 export RANK=$NODE_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
 export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
@@ -23,17 +26,19 @@ echo "master=${MASTER_ADDR}"
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
 echo "Setting env_var WORLD_SIZE=${WORLD_SIZE}"
+echo "MP=${MP}"
+echo "BATCH_SIZE=${BATCH_SIZE}"
 
 DATA_PATH=my-gpt2_text_document
 CHECKPOINT_PATH=checkpoints/gpt2_345m
 
 python megatron-lm-1.7/pretrain_gpt2.py \
        --local_rank ${LOCAL_RANK} \
-       --tensor-model-parallel-size 2 \
+       --tensor-model-parallel-size 16 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 64 \
+       --batch-size 128 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 30 \
