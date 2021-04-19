@@ -1,0 +1,14 @@
+1. Download wiki from the latest dump
+
+2. Use wikiextractor with --json to extract the data, and combine the json files into one file.
+python -m wikiextractor.WikiExtractor download/wikicorpus_en/wikicorpus_en.xml --json
+
+3. Get Microsoft DeepSpeed examples: https://github.com/microsoft/DeepSpeedExamples.git
+
+3. Preslit the json file
+python presplit_sentences_json.py /scratch2/xluo/program/sosp21_exp/data/wikipedia/wiki_AA.json /scratch2/xluo/program/sosp21_exp/data/wikipedia/wiki_AA_presplited.json
+
+4. Aliasing datasets with corpora.py
+Change PATH in corpora.py to the presplited json file (/scratch2/xluo/program/sosp21_exp/data/wikipedia/wiki_AA_presplited.json)
+
+5. Delete —lazy-loader in pretrain_bert.sh and run pretrain_bert.sh
