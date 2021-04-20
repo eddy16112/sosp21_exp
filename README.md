@@ -15,7 +15,7 @@ install dllogger https://github.com/NVIDIA/dllogger.git
 ```
 
 # Megatron-LM
-# 1. Install (optional)
+# 1. Install (optional, prefer not)
 ```
 install megatron-lm
 cd megatrom-lm
