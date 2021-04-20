@@ -4,31 +4,37 @@ nodes=($(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch)
 head=${nodes[0]}
 summit_nnodes=$(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch | wc -l)
 
-export RANK=$OMPI_COMM_WORLD_RANK
-export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
-export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
-export MASTER_ADDR=$head
-export MASTER_PORT=29501
-echo "nnodes=${summit_nnodes}"
-echo "Setting env_var RANK=${RANK}"
-echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
-echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
-
-GPUS_PER_NODE=3
+GPUS_PER_NODE=6
 # Change for multinode config
 MASTER_ADDR=$head
 MASTER_PORT=29501
 NNODES=$summit_nnodes
+#NNODES=4
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
 DATA_PATH=my-bert_text_sentence
 CHECKPOINT_PATH=checkpoints/bert_345m
 
-DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
+MP=$1
+BATCH_SIZE=$2
 
-python -m torch.distributed.launch $DISTRIBUTED_ARGS \
-       megatron-lm-1.7/pretrain_bert.py \
+export RANK=$NODE_RANK
+export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
+export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
+export MASTER_ADDR=$head
+export MASTER_PORT=29501
+echo "nnodes=${NNODES}"
+echo "master=${MASTER_ADDR}"
+echo "Setting env_var RANK=${RANK}"
+echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
+echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
+
+#DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
+
+#python -m torch.distributed.launch $DISTRIBUTED_ARGS \
+python  megatron-lm-v11/pretrain_bert.py \
+       --local_rank ${LOCAL_RANK} \
        --model-parallel-size 1 \
        --num-layers 24 \
        --hidden-size 1024 \
@@ -36,9 +42,7 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        --batch-size 4 \
        --seq-length 512 \
        --max-position-embeddings 512 \
-       --train-iters 1000000 \
-       --save $CHECKPOINT_PATH \
-       --load $CHECKPOINT_PATH \
+       --train-iters 30 \
        --data-path $DATA_PATH \
        --vocab-file bert-large-uncased-vocab.txt \
        --data-impl mmap \
@@ -51,7 +55,7 @@ python -m torch.distributed.launch $DISTRIBUTED_ARGS \
        --weight-decay 1e-2 \
        --clip-grad 1.0 \
        --warmup .01 \
-       --log-interval 100 \
+       --log-interval 10 \
        --save-interval 10000 \
        --eval-interval 1000 \
        --eval-iters 10

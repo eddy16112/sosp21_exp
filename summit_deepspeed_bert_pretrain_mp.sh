@@ -18,7 +18,7 @@ BATCH_SIZE=$2
 
 export RANK=$NODE_RANK
 export LOCAL_RANK=$OMPI_COMM_WORLD_LOCAL_RANK
-export LOCAL_SIZE=$OMPI_COMM_WORLD_LOCAL_SIZE
+#export LOCAL_SIZE=$OMPI_COMM_WORLD_LOCAL_SIZE
 export WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 export MASTER_ADDR=$head
 export MASTER_PORT=29502
@@ -33,9 +33,9 @@ echo "BATCH_SIZE=${BATCH_SIZE}"
 
 #DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
 
-python DeepSpeed/DeepSpeedExamples/Megatron-LM/pretrain_bert.py \
+python DeepSpeedExamples/Megatron-LM/pretrain_bert.py \
        --local_rank ${LOCAL_RANK} \
-       --model-parallel-size 1 \
+       --model-parallel-size 2 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
@@ -59,4 +59,3 @@ python DeepSpeed/DeepSpeedExamples/Megatron-LM/pretrain_bert.py \
        --weight-decay 1e-2 \
        --clip-grad 1.0 \
        --warmup .01
-
