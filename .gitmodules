@@ -10,3 +10,6 @@
 [submodule "megatron-lm-1.7"]
 	path = megatron-lm-1.7
 	url = https://github.com/NVIDIA/Megatron-LM.git
+[submodule "DeepSpeedExamples"]
+	path = DeepSpeedExamples
+	url = https://github.com/microsoft/DeepSpeedExamples.git
