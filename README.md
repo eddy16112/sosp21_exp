@@ -15,14 +15,7 @@ install dllogger https://github.com/NVIDIA/dllogger.git
 ```
 
 # Megatron-LM
-# 1. Install (optional, prefer not)
-```
-install megatron-lm
-cd megatrom-lm
-python setup.py install
-```
-
-# 2. pretrain BERT with wikipedia dataset
+# 1. pretrain BERT with wikipedia dataset
 ## Preprocess the dataset (optional, dataset is already preprocessed, named my-bert_text_sentence in the repo)
 ```
 bash megatron18_bert_preprocess_data.sh
@@ -32,7 +25,7 @@ bash megatron18_bert_preprocess_data.sh
 mpirun -np 1 megatron18_bert_pretrain_distributed.sh
 ```
 
-# 3. pretrain GPT2 with wikipedia dataset
+# 2. pretrain GPT2 with wikipedia dataset
 ## Preprocess the dataset (optional, dataset is already preprocessed, named my-gpt2_text_sentence in the repo)
 ```
 bash megatron18_bert_preprocess_data.sh
@@ -42,7 +35,7 @@ bash megatron18_bert_preprocess_data.sh
 mpirun -np 1 megatron17_gpt2_pretrain_distributed.sh
 ```
 
-# 4. evaluate BERT with RACE dataset
+# 3. evaluate BERT with RACE dataset
 ## Get the dataset
 ```
 wget http://www.cs.cmu.edu/~glai1/data/race/RACE.tar.gz
