@@ -1,8 +1,49 @@
+diff --git a/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py b/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py
+index 0245cae..54b5b1f 100644
+--- a/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py
++++ b/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py
+@@ -270,7 +270,11 @@ def backward_step(optimizer, model, loss):
+     if args.deepspeed:
+         model.backward(loss)
+     else:
+-        optimizer.zero_grad(set_grads_to_None=True)
++#        optimizer.zero_grad(set_grads_to_None=True)
++        if args.fp16:
++            optimizer.zero_grad(set_grads_to_None=True)
++        else:
++            optimizer.zero_grad()
+         if args.fp16:
+             optimizer.backward(loss, update_master_grads=False)
+         else:
+@@ -312,20 +316,20 @@ def train_step(forward_step_func, data_iterator,
+     args = get_args()
+     timers = get_timers()
+ 
+-    see_memory_usage(f'before forward {model.global_steps}', force=True)
++#    see_memory_usage(f'before forward {model.global_steps}', force=True)
+     # Forward model for one step.
+     timers('forward').start()
+     loss, loss_reduced = forward_step_func(data_iterator, model)
+     timers('forward').stop()
+ 
+-    see_memory_usage(f'before backward {model.global_steps}', force=True)
++#    see_memory_usage(f'before backward {model.global_steps}', force=True)
+     # Calculate gradients, reduce across processes, and clip.
+     timers('backward').start()
+     backward_step(optimizer, model, loss)
+     timers('backward').stop()
+ 
+ 
+-    see_memory_usage(f'before optimizer {model.global_steps}', force=True)
++#    see_memory_usage(f'before optimizer {model.global_steps}', force=True)
+     # Update parameters.
+     skipped_iter = 0
+     timers('optimizer').start()
 diff --git a/Megatron-LM/arguments.py b/Megatron-LM/arguments.py
-index 67c726c..d3a01b3 100755
+index 67c726c..d4b3d1d 100755
 --- a/Megatron-LM/arguments.py
 +++ b/Megatron-LM/arguments.py
-@@ -329,18 +329,19 @@ def get_args():
+@@ -329,18 +329,18 @@ def get_args():
      args.rank = int(os.getenv('RANK', '0'))
      args.world_size = int(os.getenv("WORLD_SIZE", '1'))
  
@@ -30,12 +71,11 @@ index 67c726c..d3a01b3 100755
 +#        args.local_rank = local_rank
 +#        args.rank = nodeid*local_size + local_rank
 +#        args.world_size = num_nodes*local_size
-+    print("rank:", args.rank, " local rank:", args.local_rank, " size:", args.world_size)
  
      args.model_parallel_size = min(args.model_parallel_size, args.world_size)
      if args.rank == 0:
 diff --git a/Megatron-LM/data_utils/corpora.py b/Megatron-LM/data_utils/corpora.py
-index 49877ac..04d5d17 100755
+index 49877ac..6cda080 100755
 --- a/Megatron-LM/data_utils/corpora.py
 +++ b/Megatron-LM/data_utils/corpora.py
 @@ -22,7 +22,7 @@ class wikipedia(json_dataset):
@@ -43,12 +83,12 @@ index 49877ac..04d5d17 100755
      command line usage: `--train-data wikipedia`
      """
 -    PATH = 'data/wikipedia/wikidump_lines.json'
-+    PATH = 'data/wikipedia/wiki_AA_presplited.json'
++    PATH = 'data/wikipedia//wiki_AA_presplited.json'
      assert_str = "make sure to set PATH for wikipedia data_utils/corpora.py"
      def __init__(self, **kwargs):
          assert os.path.exists(wikipedia.PATH), \
 diff --git a/Megatron-LM/data_utils/wordpiece.py b/Megatron-LM/data_utils/wordpiece.py
-index 81121e4..9b2f233 100755
+index 81121e4..674a78d 100755
 --- a/Megatron-LM/data_utils/wordpiece.py
 +++ b/Megatron-LM/data_utils/wordpiece.py
 @@ -28,7 +28,8 @@ logger = logging.getLogger(__name__)
@@ -56,8 +96,8 @@ index 81121e4..9b2f233 100755
  PRETRAINED_VOCAB_ARCHIVE_MAP = {
      'bert-base-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-uncased-vocab.txt",
 -    'bert-large-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt",
-+    'bert-large-uncased': "bert-large-uncased-vocab.txt",
 +#    'bert-large-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-uncased-vocab.txt",
++    'bert-large-uncased': "bert-large-uncased-vocab.txt",
      'bert-base-cased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-cased-vocab.txt",
      'bert-large-cased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-large-cased-vocab.txt",
      'bert-base-multilingual-uncased': "https://s3.amazonaws.com/models.huggingface.co/bert/bert-base-multilingual-uncased-vocab.txt",
