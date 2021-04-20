@@ -1,3 +1,20 @@
+diff --git a/Megatron-LM-v1.1.5-3D_parallelism/megatron/training.py b/Megatron-LM-v1.1.5-3D_parallelism/megatron/training.py
+index bd19ed3..0fc8311 100644
+--- a/Megatron-LM-v1.1.5-3D_parallelism/megatron/training.py
++++ b/Megatron-LM-v1.1.5-3D_parallelism/megatron/training.py
+@@ -278,7 +278,11 @@ def backward_step(optimizer, model, loss):
+     if args.deepspeed:
+         model.backward(loss)
+     else:
+-        optimizer.zero_grad(set_grads_to_None=True)
++#        optimizer.zero_grad(set_grads_to_None=True)
++        if args.fp16:
++            optimizer.zero_grad(set_grads_to_None=True)
++        else:
++            optimizer.zero_grad()
+         if args.fp16:
+             optimizer.backward(loss, update_master_grads=False)
+         else:
 diff --git a/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py b/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py
 index 0245cae..54b5b1f 100644
 --- a/Megatron-LM-v1.1.5-ZeRO3/megatron/training.py
