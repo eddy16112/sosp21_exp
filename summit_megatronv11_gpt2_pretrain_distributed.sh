@@ -1,4 +1,4 @@
-#!/bin/bash
+#! /bin/bash
 
 nodes=($(cat ${LSB_DJOB_HOSTFILE} | sort | uniq | grep -v login | grep -v batch))
 head=${nodes[0]}
@@ -13,9 +13,6 @@ NNODES=$summit_nnodes
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
-DATA_PATH=my-bert_text_sentence
-CHECKPOINT_PATH=checkpoints/bert_345m
-
 MP=$1
 BATCH_SIZE=$2
 
@@ -28,33 +25,37 @@ echo "nnodes=${NNODES}"
 echo "master=${MASTER_ADDR}"
 echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
-echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
+echo "Setting env_var WORLD_SIZE=${WORLD_SIZE}"
+echo "MP=${MP}"
+echo "BATCH_SIZE=${BATCH_SIZE}"
 
-#DISTRIBUTED_ARGS="--nproc_per_node $GPUS_PER_NODE --nnodes $NNODES --node_rank $NODE_RANK --master_addr $MASTER_ADDR --master_port $MASTER_PORT"
+DATA_PATH=my-gpt2_text_document
+CHECKPOINT_PATH=checkpoints/gpt2_345m
 
-#python -m torch.distributed.launch $DISTRIBUTED_ARGS \
-python  megatron-lm-v11/pretrain_bert.py \
+python megatron-lm-v11/pretrain_gpt2.py \
        --local_rank ${LOCAL_RANK} \
-       --model-parallel-size 2 \
+       --model-parallel-size 16 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 8 \
+       --batch-size 128 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 30 \
+       --lr-decay-iters 320000 \
        --data-path $DATA_PATH \
-       --vocab-file bert-large-uncased-vocab.txt \
+       --vocab-file gpt2-vocab.json \
+       --merge-file gpt2-merges.txt \
        --data-impl mmap \
        --split 949,50,1 \
        --distributed-backend nccl \
-       --lr 0.0001 \
-       --lr-decay-style linear \
+       --lr 0.00015 \
+       --lr-decay-style cosine \
        --min-lr 1.0e-5 \
-       --lr-decay-iters 990000 \
        --weight-decay 1e-2 \
        --clip-grad 1.0 \
        --warmup .01 \
+       --checkpoint-activations \
        --log-interval 10 \
        --save-interval 10000 \
        --eval-interval 1000 \

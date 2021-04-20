@@ -35,11 +35,11 @@ echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 #python -m torch.distributed.launch $DISTRIBUTED_ARGS \
 python  megatron-lm-1.7/pretrain_bert.py \
        --local_rank ${LOCAL_RANK} \
-       --tensor-model-parallel-size 2 \
+       --tensor-model-parallel-size 4 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 8 \
+       --batch-size 16 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 30 \
