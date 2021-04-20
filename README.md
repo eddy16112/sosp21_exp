@@ -73,7 +73,11 @@ open the DeepSpeed/DeepSpeedExamples/Megatron-LM/data_utils/corpora.py
 
 set PATH = 'data/wikipedia/wiki_AA_presplited.json' 
 
-# 4. Run
+# 4. Apply the patch
+
+apply the deepspeed.patch to DeepSpeedExample
+
+# 5. Run
 ```
 mpirun -np 1 ./deepspeed_bert_pretrain_mp.sh 
 ``` 
