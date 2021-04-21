@@ -1,10 +1,10 @@
 #! /bin/bash
 
-GPUS_PER_NODE=4
+GPUS_PER_NODE=1
 # Change for multinode config
-MASTER_ADDR=cn4030
-MASTER_PORT=6008
-NNODES=1
+MASTER_ADDR=cn138
+MASTER_PORT=6001
+NNODES=2
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
 
@@ -23,7 +23,7 @@ echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
 echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 
-DATA_PATH=my-bert_text_document
+DATA_PATH=my-bert_text_sentence
 VOCAB_PATH=bert-large-uncased-vocab.txt
 CHECKPOINT_PATH=checkpoints/bert_345m_ds
 
@@ -39,7 +39,7 @@ pp_size=0
 
 NLAYERS=24
 NHIDDEN=1024
-BATCHSIZE=8
+BATCHSIZE=4
 LOGDIR="tensorboard_data/${NLAYERS}l_${NHIDDEN}h_${NNODES}n_${GPUS_PER_NODE}g_${pp_size}pp_${mp_size}mp_${BATCHSIZE}b_ds4"
 
 GAS=1

@@ -1,6 +1,6 @@
 {
-  "train_batch_size": 64,
-  "train_micro_batch_size_per_gpu": 8,
+  "train_batch_size": 8,
+  "train_micro_batch_size_per_gpu": 4,
   "steps_per_print": 10,
   "gradient_clipping": 1.0,
   "fp16": {

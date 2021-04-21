@@ -1,9 +1,9 @@
 #! /bin/bash
 
-GPUS_PER_NODE=4
+GPUS_PER_NODE=1
 # Change for multinode config
-MASTER_ADDR=cn4030
-MASTER_PORT=6009
+MASTER_ADDR=cn138
+MASTER_PORT=6010
 NNODES=1
 NODE_RANK=$OMPI_COMM_WORLD_RANK
 WORLD_SIZE=$(($GPUS_PER_NODE*$NNODES))
@@ -36,7 +36,7 @@ config_json="$script_dir/ds3d_gpt2_config.json"
 # Megatron Model Parallelism
 mp_size=2
 # DeepSpeed Pipeline parallelism
-pp_size=0
+pp_size=1
 
 NLAYERS=24
 NHIDDEN=1024
