@@ -29,20 +29,19 @@ echo "Setting env_var RANK=${RANK}"
 echo "Setting env_var LOCAL_RANK=${LOCAL_RANK}"
 echo "Setting env_var WORLD_SIZE=${OMPI_COMM_WORLD_SIZE}"
 
-DATA_PATH=my-gpt2_text_document
-VOCAB_PATH=gpt2-vocab.json
-MERGE_PATH=gpt2-merges.txt
-CHECKPOINT_PATH=checkpoints/gpt2_345m_ds
+DATA_PATH=my-bert_text_sentence
+VOCAB_PATH=bert-large-uncased-vocab.txt
+CHECKPOINT_PATH=checkpoints/bert_345m_ds
 
 script_path=$(realpath $0)
 script_dir=$(dirname $script_path)
 #config_json="$script_dir/ds_zero_stage_2_config.json"
-config_json="$script_dir/ds3d_gpt2_config.json"
+config_json="$script_dir/ds3d_bert_config.json"
 
 # Megatron Model Parallelism
 mp_size=2
 # DeepSpeed Pipeline parallelism
-pp_size=2
+pp_size=0
 
 NLAYERS=24
 NHIDDEN=1024
@@ -82,12 +81,12 @@ gpt_options=" \
         --lr-decay-iters 320000 \
         --data-path $DATA_PATH \
         --vocab-file $VOCAB_PATH \
-        --merge-file $MERGE_PATH \
         --data-impl mmap \
         --split 949,50,1 \
         --distributed-backend nccl \
-        --lr 1.5e-4 \
-        --lr-decay-style cosine \
+        --lr 0.001 \
+        --lr-decay-style linear \
+				--lr-decay-iters 990000 \
         --min-lr 1.0e-5 \
         --weight-decay 1e-2 \
         --clip-grad 1.0 \
@@ -150,9 +149,9 @@ fi
 full_options="${gpt_options} ${deepspeed_options} ${chkp_opt}"
 
 #run_cmd="deepspeed --hostfile=hostfile --num_nodes ${DLWS_NUM_WORKER} --num_gpus ${DLWS_NUM_GPU_PER_WORKER} DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism/pretrain_gpt2.py $@ ${full_options}"
-run_cmd="python DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism/pretrain_gpt2.py $@ ${full_options}"
+run_cmd="python DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism/pretrain_bert.py $@ ${full_options}"
 echo ${run_cmd}
 
-python DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism/pretrain_gpt2.py $@ ${full_options}
+python DeepSpeedExamples/Megatron-LM-v1.1.5-3D_parallelism/pretrain_bert.py $@ ${full_options}
 
 set +x
