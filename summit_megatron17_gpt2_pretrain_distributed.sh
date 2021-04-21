@@ -34,11 +34,11 @@ CHECKPOINT_PATH=checkpoints/gpt2_345m
 
 python megatron-lm-1.7/pretrain_gpt2.py \
        --local_rank ${LOCAL_RANK} \
-       --tensor-model-parallel-size 16 \
+       --tensor-model-parallel-size 1 \
        --num-layers 24 \
        --hidden-size 1024 \
        --num-attention-heads 16 \
-       --batch-size 128 \
+       --batch-size 8 \
        --seq-length 512 \
        --max-position-embeddings 512 \
        --train-iters 30 \
